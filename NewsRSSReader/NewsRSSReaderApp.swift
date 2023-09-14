@@ -1,0 +1,17 @@
+//
+//  NewsRSSReaderApp.swift
+//  NewsRSSReader
+//
+//  Created by Andrey Simakov on 14.09.2023.
+//
+
+import SwiftUI
+
+@main
+struct NewsRSSReaderApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
