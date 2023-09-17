@@ -42,11 +42,7 @@ struct ContentView: View {
                  Image("background")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .overlay(
-                        LinearGradient(gradient: Gradient(colors: [.clear, Color("Black")]),
-                                           startPoint: .center,
-                                           endPoint: .bottom)
-                        )
+                    .modifier(FadeDownViewModifier())
             )
             .frame(height: 350)
             .clipped()
@@ -55,6 +51,17 @@ struct ContentView: View {
             Spacer()
         }
     }
+}
+
+struct FadeDownViewModifier: ViewModifier{
+    func body(content: Content) -> some View {
+           return content
+                .overlay(
+                LinearGradient(gradient: Gradient(colors: [.clear, Color("Black")]),
+                                   startPoint: .center,
+                                   endPoint: .bottom)
+                )
+       }
 }
 
 struct ContentView_Previews: PreviewProvider {
