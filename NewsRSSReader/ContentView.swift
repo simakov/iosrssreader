@@ -9,46 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     @State var tab = 0
+    @State var latestNews: News = News(guid: "https://lenta.ru/news/2023/09/20/izmeneniya/",
+                                       author: "Варвара Кошечкина", title: "Песков предупредил о происходящих в мире тектонических изменениях",
+                                       link: "https://lenta.ru/news/2023/09/20/izmeneniya/",
+                                       description: "<![CDATA[В мире происходят тектонические изменения. Организация Объединенных наций (ООН) должна к ним адаптироваться. Об этом предупредил пресс-секретарь президента России Дмитрий Песков.]]>",
+                                       pubDate: "Wed, 20 Sep 2023 16:38:29 +0300",
+                                       enclosure: "https://icdn.lenta.ru/images/2023/09/20/16/20230920163731575/pic_e8e6cfaf91098f77b5efec4625e837ff.jpg",
+                                       category: "Мир")
+    
     var body: some View {
         VStack(spacing: 0) {
-            HStack{
-                Image(systemName: "line.horizontal.3")
-                    .foregroundColor(Color("White"))
-                    .padding(10)
-                Image("logo")
-                    .resizable()
-                    .frame(width: 120.0, height: 20.0)
-                    .padding(10)
-                Spacer()
-            }.background(Color("Black"))
+            TopPanel()
             ScrollView(.vertical) {
-                VStack{
-                    Spacer()
-                    Text("Китай обнародовал план по углублению интеграции с Тайванем")
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(Color("White"))
-                        .clipped()
-                        .padding(.bottom, 5)
-                    HStack{
-                        Text("13:01")
-                            .font(.system(size: 13))
-                            .foregroundColor(Color("Gray"))
-                            .padding(.trailing, 5)
-                            .padding(.leading, 5)
-                        Text("Мир")
-                            .font(.system(size: 13))
-                            .foregroundColor(Color("Gray"))
-                        Spacer()
-                    }
-                }.padding()
-                    .background(
-                        Image("background")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .modifier(FadeDownViewModifier())
-                    )
-                    .frame(height: 350)
-                    .clipped()
+               FeatureCard(latestNews, showTime: true)
                 HStack(alignment: .center,spacing: 20) {
                     if tab == 0 {
                         Text("Последнее")
@@ -74,24 +47,12 @@ struct ContentView: View {
                     .font(.system(size: 15))
                     .textCase(.uppercase)
                     .foregroundColor(Color("Black"))
-                ForEach(0..<10, id: \.self) { num in
-                    HStack(spacing: 10) {
-                        VStack(alignment: .leading) {
-                            Text("В российском фитнес-центре дети отравились парами хлора")
-                                .font(.system(size: 15, weight: .semibold))
-                                .foregroundColor(Color.black)
-                                .padding(.bottom, 5)
-                                .multilineTextAlignment(.leading)
-                            Text("12:00")
-                                .font(.system(size: 13, design: .serif))
-                                .foregroundColor(Color("Gray"))
-                        }
-                        Image("newsItem")
-                            .frame(width: 60, height: 60)
-                            .scaledToFit()
-                            .cornerRadius(4)
-                    }.padding(10)
+                VStack(spacing: 20) {
+                    ForEach(0..<10, id: \.self) { num in
+                        NewsItem()
+                    }
                 }
+                
                 Text("Больше новостей")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(Color("Black"))
@@ -102,8 +63,10 @@ struct ContentView: View {
                     .padding(.trailing, 15)
                     .border(Color("LigthGrey"))
                     .padding(.top,10)
+                FeatureCard(latestNews, showTime: false).padding()
+                BigCard(latestNews, showTime: false).padding()
             }
-            Spacer()
+            Spacer() 
         }
     }
 }
