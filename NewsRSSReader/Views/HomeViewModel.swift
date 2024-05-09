@@ -68,7 +68,7 @@ final class HomeViewModel: ObservableObject {
         } else {
             self.lastIndex += itemsOnPage
         }
-        self.rssFeed = Array(allFeed[..<self.lastIndex])
+        self.rssFeed = Array(allFeed[1..<self.lastIndex])
     }
 }
 

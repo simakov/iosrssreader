@@ -169,7 +169,7 @@ struct NewsView: View {
                 if let title = data.title {
                     Text(title)
                         .font(.system(size: 15, weight: .semibold))
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color("Black"))
                         .padding(.bottom, 5)
                         .multilineTextAlignment(.leading)
                 }
@@ -205,7 +205,7 @@ struct FadeDownViewModifier: ViewModifier{
     func body(content: Content) -> some View {
         return content
             .overlay(
-                LinearGradient(gradient: Gradient(colors: [.clear, Color("Black")]),
+                LinearGradient(gradient: Gradient(colors: [.clear, Color("Background")]),
                                startPoint: .center,
                                endPoint: .bottom)
             )
