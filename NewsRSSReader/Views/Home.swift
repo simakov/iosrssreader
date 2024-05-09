@@ -12,7 +12,7 @@ import FeedKit
 import SDWebImageSwiftUI
 
 struct Home: View {
-    @StateObject private var viewModel: HomeViewModel = .init("https://lenta.ru/rss")
+    @StateObject public var viewModel: HomeViewModel
     var body: some View {
         if viewModel.isLoading {
             Text("Loading...")
@@ -123,11 +123,17 @@ struct NewsTop: View {
         if let enclosure = data.enclosure, let url = enclosure.attributes?.url {
             VStack{
                 Spacer()
-                Text(data.title ?? "")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(Color("White"))
-                    .clipped()
-                    .padding(.bottom, 5)
+                if let link = data.link {
+                    NavigationLink(
+                        destination: WebView(URL(string: link)!),
+                        label: {
+                            Text(data.title ?? "")
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(Color("White"))
+                                .clipped()
+                                .padding(.bottom, 5)
+                        })
+                }
                 HStack{
                     Text(data.publishedDate())
                         .font(.system(size: 13))
@@ -205,9 +211,9 @@ struct FadeDownViewModifier: ViewModifier{
             )
     }
 }
-
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        Home()
-    }
-}
+//
+//struct Home_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Home()
+//    }
+//}

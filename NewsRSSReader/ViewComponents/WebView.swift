@@ -27,13 +27,14 @@ struct WebView: View {
         
     }
 }
-struct SafariView: UIViewControllerRepresentable {
+struct SafariView: UIViewControllerRepresentable{
     let url: URL
     func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
         let config = SFSafariViewController.Configuration()
         config.entersReaderIfAvailable = true
         config.barCollapsingEnabled = true
-        return CustomSafariViewController(url: url, configuration: config)
+        let vc = CustomSafariViewController(url: url, configuration: config)
+        return vc
     }
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {
     }

@@ -16,7 +16,7 @@ final class HomeViewModel: ObservableObject {
         case onLoad
         case onTapItem(urlString: String)
     }
-    
+    private var url: String
     // MARK: - Outputs
     @Published private(set) var rssFeed: [RSSFeedItem] = []
     private var allFeed: [RSSFeedItem] = []
@@ -26,11 +26,12 @@ final class HomeViewModel: ObservableObject {
     var lastIndex = 0
     var itemsOnPage = 10
     init(_ url: String) {
-        isLoading = true
-        self.load(url)
+        self.url = url
+        self.load()
     }
 
-    func load(_ url: String) {
+    func load() {
+        isLoading = true
         let feedURL = URL(string: url)!
         let parser = FeedParser(URL: feedURL)
         parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
