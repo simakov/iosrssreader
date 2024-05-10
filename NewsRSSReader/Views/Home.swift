@@ -29,7 +29,7 @@ struct Home: View {
             ForEach(viewModel.rssFeed) { item in
                 if let link = item.link {
                     NavigationLink(
-                        destination: WebView(URL(string: link)!),
+                        destination: DetailNewsView(.init(from: item)),
                         label: {
                             NewsView(data: item)
                             
@@ -123,9 +123,8 @@ struct NewsTop: View {
         if let enclosure = data.enclosure, let url = enclosure.attributes?.url {
             VStack{
                 Spacer()
-                if let link = data.link {
                     NavigationLink(
-                        destination: WebView(URL(string: link)!),
+                        destination: DetailNewsView( .init(from: data)),
                         label: {
                             Text(data.title ?? "")
                                 .font(.system(size: 20, weight: .semibold))
@@ -133,7 +132,7 @@ struct NewsTop: View {
                                 .clipped()
                                 .padding(.bottom, 5)
                         })
-                }
+                
                 HStack{
                     Text(data.publishedDate())
                         .font(.system(size: 13))
@@ -182,6 +181,7 @@ struct NewsView: View {
             if let enclosure = data.enclosure {
                 if let url = enclosure.attributes?.url {
                     WebImage(url: URL(string: url)!)
+                        .resizable()
                         .frame(width: 60, height: 60)
                         .scaledToFit()
                         .cornerRadius(4)

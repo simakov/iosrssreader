@@ -72,34 +72,3 @@ final class HomeViewModel: ObservableObject {
     }
 }
 
-extension RSSFeedItem: Identifiable {
-    //public let id = UUID()
-            
-    func publishedDate() -> String {
-        guard let date = pubDate else { return "" }
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        let fullDateFormatter = DateFormatter()
-        
-        // Set the date format for the current day (time only)
-        dateFormatter.dateFormat = "HH:mm"
-        
-        // Set the date format for all other days (date and time)
-        let fullDateFormat = "d.MM HH:mm"
-        fullDateFormatter.dateFormat = fullDateFormat
-        
-        let calendar = Calendar.current
-        
-        // Comparing dates to determine if the date is the current day
-        let components1 = calendar.dateComponents([.day, .month, .year], from: date)
-        let components2 = calendar.dateComponents([.day, .month, .year], from: currentDate)
-        
-        if components1.day == components2.day && components1.month == components2.month && components1.year == components2.year {
-            // If the date is the current day, we return only the time
-            return dateFormatter.string(from: date)
-        } else {
-            // If the date is not the current day, return the date and time
-            return fullDateFormatter.string(from: date)
-        }
-    }
-}

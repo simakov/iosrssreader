@@ -6,10 +6,10 @@
 import SwiftUI
 import SafariServices
 
-struct WebView: View {
-    var url: URL
-    init(_ url: URL) {
-        self.url = url
+struct DetailNewsView: View {
+    var viewModel: DetailNewsViewModel
+    init(_ data: NewsPage) {
+        self.viewModel = .init(data)
 //        let config = SFSafariViewController.Configuration()
 //        config.entersReaderIfAvailable = true
 //        config.barCollapsingEnabled = true
@@ -21,7 +21,7 @@ struct WebView: View {
                    ZStack {
                        Color("Background").edgesIgnoringSafeArea(.all)
                        
-                        SafariView(url: url)
+                       SafariView(url: URL(string: viewModel.data.url)!)
                    }
                }
         

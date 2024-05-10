@@ -48,3 +48,7 @@ struct BigCard: View {
         }.background(Color("BackgroundWhite"))
     }
 }
+
+#Preview {
+    BigCard(RSSFeedItem.sample(), showTime: true)
+}

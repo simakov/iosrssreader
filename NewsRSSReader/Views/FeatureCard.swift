@@ -7,10 +7,12 @@
 
 import SwiftUI
 import FeedKit
+import SDWebImageSwiftUI
 
 struct FeatureCard: View {
     let news: RSSFeedItem
     let showTime: Bool
+
     init(_ news: RSSFeedItem, showTime: Bool) {
         self.news = news
         self.showTime = showTime
@@ -18,7 +20,7 @@ struct FeatureCard: View {
     var body: some View {
         VStack{
             Spacer()
-            Text(news.title ?? "")
+            Text(news.title ?? "empty")
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundColor(Color("White"))
                 .clipped()
@@ -39,12 +41,30 @@ struct FeatureCard: View {
         }
         .padding()
         .background(
-        Image("background")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .modifier(FadeDownViewModifier())
+            WebImage(url: URL(string: imageURL()))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .modifier(FadeDownViewModifier())
         )
         .frame(height: 350)
         .clipped()
     }
+    
+    func imageURL() -> String {
+        if let enclosure = news.enclosure, let url = enclosure.attributes?.url {
+            print(url)
+            return url
+        } else {
+            print(news.enclosure?.attributes)
+            return ""
+        }
+    }
+}
+
+
+
+#Preview {
+    
+        FeatureCard(RSSFeedItem.sample(), showTime: false)
+    .background(Color.black)
 }
