@@ -6,32 +6,42 @@
 //
 
 import SwiftUI
+import FeedKit
+import SDWebImageSwiftUI
 
-struct NewsItem: View {
+struct NewsView: View {
+    @State var data: RSSFeedItem
     var body: some View {
-        HStack(spacing: 10){
+        HStack(spacing: 10) {
             VStack(alignment: .leading) {
-                Text("В российском фитнес-центре дети отравились парами хлора")
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundColor(Color.black)
-                    .padding(.bottom, 5)
-                    .multilineTextAlignment(.leading)
-                Text("12:00")
-                    .font(.system(size: 13, design: .serif))
+                if let title = data.title {
+                    Text(title)
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(Color("Black"))
+                        .padding(.bottom, 5)
+                        .multilineTextAlignment(.leading)
+                }
+                
+                Text(data.publishedDate())
+                    .font(.system(size: 13))
                     .foregroundColor(Color("Gray"))
             }
-            Image("newsItem")
-                .frame(width: 60, height: 60)
-                .scaledToFit()
-                .cornerRadius(4)
-            
-        }
-        
+            Spacer()
+            if let enclosure = data.enclosure {
+                if let url = enclosure.attributes?.url {
+                    WebImage(url: URL(string: url)!)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(4)
+                }
+            }
+        }.padding(10)
     }
 }
 
 struct NewsItem_Previews: PreviewProvider {
     static var previews: some View {
-        NewsItem()
+        NewsView(data: RSSFeedItem.sample())
     }
 }

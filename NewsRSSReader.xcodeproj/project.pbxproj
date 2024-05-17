@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55C39C472BF7901F00E57D9A /* NewsTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C39C462BF7901F00E57D9A /* NewsTopView.swift */; };
+		55C39C4A2BF7910400E57D9A /* FadeDownViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C39C492BF7910400E57D9A /* FadeDownViewModifier.swift */; };
+		55C39C4C2BF7913100E57D9A /* SelectedTabModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C39C4B2BF7913100E57D9A /* SelectedTabModifier.swift */; };
+		55C39C4E2BF7915C00E57D9A /* NewsTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C39C4D2BF7915C00E57D9A /* NewsTabsView.swift */; };
 		55C67E6F2AB301C40046F07C /* NewsRSSReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C67E6E2AB301C40046F07C /* NewsRSSReaderApp.swift */; };
 		55C67E712AB301C40046F07C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C67E702AB301C40046F07C /* ContentView.swift */; };
 		55C67E732AB301C50046F07C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C67E722AB301C50046F07C /* Assets.xcassets */; };
@@ -26,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55C39C462BF7901F00E57D9A /* NewsTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTopView.swift; sourceTree = "<group>"; };
+		55C39C492BF7910400E57D9A /* FadeDownViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeDownViewModifier.swift; sourceTree = "<group>"; };
+		55C39C4B2BF7913100E57D9A /* SelectedTabModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTabModifier.swift; sourceTree = "<group>"; };
+		55C39C4D2BF7915C00E57D9A /* NewsTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTabsView.swift; sourceTree = "<group>"; };
 		55C67E6B2AB301C40046F07C /* NewsRSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsRSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C67E6E2AB301C40046F07C /* NewsRSSReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRSSReaderApp.swift; sourceTree = "<group>"; };
 		55C67E702AB301C40046F07C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		55C39C482BF790F000E57D9A /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				55C39C492BF7910400E57D9A /* FadeDownViewModifier.swift */,
+				55C39C4B2BF7913100E57D9A /* SelectedTabModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		55C67E622AB301C40046F07C = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +93,7 @@
 		55C67E6D2AB301C40046F07C /* NewsRSSReader */ = {
 			isa = PBXGroup;
 			children = (
+				55C39C482BF790F000E57D9A /* Modifiers */,
 				C7F9E5262BEE35D700C6B609 /* Extentions */,
 				C73BA59E2BED407D00A5B828 /* Info.plist */,
 				C7A402BA2BE51496005E5F71 /* ViewComponents */,
@@ -123,6 +141,8 @@
 				C73BA5972BECDF0F00A5B828 /* NewsItem.swift */,
 				C73BA5992BECDF1000A5B828 /* TopPanel.swift */,
 				C7F9E5242BEE354D00C6B609 /* DetailNewsViewModel.swift */,
+				55C39C462BF7901F00E57D9A /* NewsTopView.swift */,
+				55C39C4D2BF7915C00E57D9A /* NewsTabsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -227,12 +247,16 @@
 				C73BA59A2BECDF1000A5B828 /* FeatureCard.swift in Sources */,
 				55C67E712AB301C40046F07C /* ContentView.swift in Sources */,
 				C73BA59D2BECDF1000A5B828 /* TopPanel.swift in Sources */,
+				55C39C4C2BF7913100E57D9A /* SelectedTabModifier.swift in Sources */,
 				C7A402B32BE513A3005E5F71 /* Home.swift in Sources */,
 				C7F9E5282BEE35F000C6B609 /* RSSFeedItem.swift in Sources */,
 				C73BA59C2BECDF1000A5B828 /* BigCard.swift in Sources */,
 				C73BA59B2BECDF1000A5B828 /* NewsItem.swift in Sources */,
+				55C39C472BF7901F00E57D9A /* NewsTopView.swift in Sources */,
+				55C39C4A2BF7910400E57D9A /* FadeDownViewModifier.swift in Sources */,
 				55C67E6F2AB301C40046F07C /* NewsRSSReaderApp.swift in Sources */,
 				C7A402AF2BE51324005E5F71 /* HomeViewModel.swift in Sources */,
+				55C39C4E2BF7915C00E57D9A /* NewsTabsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
