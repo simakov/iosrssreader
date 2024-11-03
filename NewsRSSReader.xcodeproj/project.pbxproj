@@ -11,13 +11,18 @@
 		55C67E712AB301C40046F07C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C67E702AB301C40046F07C /* ContentView.swift */; };
 		55C67E732AB301C50046F07C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C67E722AB301C50046F07C /* Assets.xcassets */; };
 		55C67E762AB301C50046F07C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C67E752AB301C50046F07C /* Preview Assets.xcassets */; };
+		C730CC812CA9B189000D09A7 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C730CC802CA9B189000D09A7 /* NewsView.swift */; };
+		C730CC832CA9B202000D09A7 /* NewsTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C730CC822CA9B202000D09A7 /* NewsTop.swift */; };
+		C730CC852CA9B277000D09A7 /* NewsTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C730CC842CA9B277000D09A7 /* NewsTabs.swift */; };
 		C73BA5902BEB946C00A5B828 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = C73BA58F2BEB946C00A5B828 /* FeedKit */; };
-		C73BA5952BEBBC4D00A5B828 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = C73BA5942BEBBC4D00A5B828 /* SwiftSoup */; };
 		C7A402AF2BE51324005E5F71 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A402AE2BE51324005E5F71 /* HomeViewModel.swift */; };
 		C7A402B32BE513A3005E5F71 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A402B22BE513A3005E5F71 /* Home.swift */; };
 		C7A402B82BE51484005E5F71 /* ArticleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A402B62BE51484005E5F71 /* ArticleCard.swift */; };
 		C7A402B92BE51484005E5F71 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A402B72BE51484005E5F71 /* WebView.swift */; };
+		C7D7F9D62CD6886600207A7E /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D7F9D52CD6886400207A7E /* Shimmer.swift */; };
 		C7D832202BE3D50C0037D5A9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C7D8321F2BE3D50C0037D5A9 /* SDWebImageSwiftUI */; };
+		C7E265CC2CA87686004B6AE3 /* LentaFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E265CB2CA87686004B6AE3 /* LentaFeedService.swift */; };
+		C7E265CE2CA879F7004B6AE3 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E265CD2CA879F7004B6AE3 /* NewsItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +31,16 @@
 		55C67E702AB301C40046F07C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		55C67E722AB301C50046F07C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55C67E752AB301C50046F07C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C730CC802CA9B189000D09A7 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		C730CC822CA9B202000D09A7 /* NewsTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTop.swift; sourceTree = "<group>"; };
+		C730CC842CA9B277000D09A7 /* NewsTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTabs.swift; sourceTree = "<group>"; };
 		C7A402AE2BE51324005E5F71 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C7A402B22BE513A3005E5F71 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		C7A402B62BE51484005E5F71 /* ArticleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCard.swift; sourceTree = "<group>"; };
 		C7A402B72BE51484005E5F71 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		C7D7F9D52CD6886400207A7E /* Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmer.swift; sourceTree = "<group>"; };
+		C7E265CB2CA87686004B6AE3 /* LentaFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LentaFeedService.swift; sourceTree = "<group>"; };
+		C7E265CD2CA879F7004B6AE3 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +50,6 @@
 			files = (
 				C7D832202BE3D50C0037D5A9 /* SDWebImageSwiftUI in Frameworks */,
 				C73BA5902BEB946C00A5B828 /* FeedKit in Frameworks */,
-				C73BA5952BEBBC4D00A5B828 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +98,7 @@
 		C7074E892BE23DE300D922B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C7E265CD2CA879F7004B6AE3 /* NewsItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,6 +106,7 @@
 		C7074E8C2BE23ED600D922B4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C7E265CB2CA87686004B6AE3 /* LentaFeedService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -104,6 +116,9 @@
 			children = (
 				C7A402AE2BE51324005E5F71 /* HomeViewModel.swift */,
 				C7A402B22BE513A3005E5F71 /* Home.swift */,
+				C730CC842CA9B277000D09A7 /* NewsTabs.swift */,
+				C730CC822CA9B202000D09A7 /* NewsTop.swift */,
+				C730CC802CA9B189000D09A7 /* NewsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -111,6 +126,7 @@
 		C7A402BA2BE51496005E5F71 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				C7D7F9D52CD6886400207A7E /* Shimmer.swift */,
 				C7A402B62BE51484005E5F71 /* ArticleCard.swift */,
 				C7A402B72BE51484005E5F71 /* WebView.swift */,
 			);
@@ -136,7 +152,6 @@
 			packageProductDependencies = (
 				C7D8321F2BE3D50C0037D5A9 /* SDWebImageSwiftUI */,
 				C73BA58F2BEB946C00A5B828 /* FeedKit */,
-				C73BA5942BEBBC4D00A5B828 /* SwiftSoup */,
 			);
 			productName = NewsRSSReader;
 			productReference = 55C67E6B2AB301C40046F07C /* NewsRSSReader.app */;
@@ -150,7 +165,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					55C67E6A2AB301C40046F07C = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -169,7 +184,6 @@
 			packageReferences = (
 				C7D8321E2BE3D50C0037D5A9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				C73BA58E2BEB946C00A5B828 /* XCRemoteSwiftPackageReference "FeedKit" */,
-				C73BA5932BEBBC4D00A5B828 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 55C67E6C2AB301C40046F07C /* Products */;
 			projectDirPath = "";
@@ -197,11 +211,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C730CC852CA9B277000D09A7 /* NewsTabs.swift in Sources */,
+				C7D7F9D62CD6886600207A7E /* Shimmer.swift in Sources */,
 				C7A402B92BE51484005E5F71 /* WebView.swift in Sources */,
 				C7A402B82BE51484005E5F71 /* ArticleCard.swift in Sources */,
+				C7E265CC2CA87686004B6AE3 /* LentaFeedService.swift in Sources */,
+				C730CC812CA9B189000D09A7 /* NewsView.swift in Sources */,
 				55C67E712AB301C40046F07C /* ContentView.swift in Sources */,
 				C7A402B32BE513A3005E5F71 /* Home.swift in Sources */,
+				C730CC832CA9B202000D09A7 /* NewsTop.swift in Sources */,
 				55C67E6F2AB301C40046F07C /* NewsRSSReaderApp.swift in Sources */,
+				C7E265CE2CA879F7004B6AE3 /* NewsItem.swift in Sources */,
 				C7A402AF2BE51324005E5F71 /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +265,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -305,6 +326,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -334,6 +356,7 @@
 				DEVELOPMENT_TEAM = 8CW463USMQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Lenta;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -363,6 +386,7 @@
 				DEVELOPMENT_TEAM = 8CW463USMQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Lenta;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -413,14 +437,6 @@
 				minimumVersion = 9.1.2;
 			};
 		};
-		C73BA5932BEBBC4D00A5B828 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.7.2;
-			};
-		};
 		C7D8321E2BE3D50C0037D5A9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -436,11 +452,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C73BA58E2BEB946C00A5B828 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
-		};
-		C73BA5942BEBBC4D00A5B828 /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C73BA5932BEBBC4D00A5B828 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
 		};
 		C7D8321F2BE3D50C0037D5A9 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

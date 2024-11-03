@@ -26,7 +26,7 @@ struct ContentView: View {
                     Spacer()
                 }.background(Color("Background"))
                 ScrollView(.vertical) {
-                    Home()
+                    Home(viewModel: HomeViewModel())
                     Spacer()
                 }
             }
