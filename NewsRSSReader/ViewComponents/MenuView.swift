@@ -37,14 +37,14 @@ struct MenuView: View {
                         menuShow.toggle()
                     }
                 }
-                .padding(.bottom, 0)
+                .padding(.bottom, 4)
             ForEach(categories, id: \.self) { category in
                 MenuItem(title: category, selected: category == selectedCategory)
                     .onTapGesture {
                         selectedCategory = category
                         menuShow.toggle()
                     }
-                    .padding(.vertical, 4)
+                    .padding(.bottom, 4)
             }
             Spacer()
         }
@@ -63,17 +63,20 @@ struct MenuItem: View {
                     .frame(width: 3, height: 20)
                     .foregroundColor(Color("Red"))
                 Text(title)
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(.system(size: 21, weight: .semibold))
                     .foregroundColor(Color("Red"))
                     .padding(.leading, 5)
                 Spacer()
             }
         } else {
             HStack{
+                Rectangle()
+                    .frame(width: 3, height: 20)
+                    .foregroundColor(Color("Background"))
                 Text(title)
                     .foregroundColor(Color("White"))
                     .font(.system(size: 20, weight: .semibold))
-                    .padding(.leading, 20)
+                    .padding(.leading, 5)
                 Spacer()
             }
         }
