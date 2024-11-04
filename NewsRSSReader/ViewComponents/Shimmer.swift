@@ -1,10 +1,8 @@
 //
 //  Shimmer.swift
-//  NewsRSSReader
+//  SwiftUI-Shimmer
+//  Created by Vikram Kriplaney on 23.03.21.
 //
-//  Created by Andrey Simakov on 02.11.2024.
-//
-
 
 import SwiftUI
 

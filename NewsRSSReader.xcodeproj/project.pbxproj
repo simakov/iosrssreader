@@ -15,9 +15,10 @@
 		C730CC832CA9B202000D09A7 /* NewsTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C730CC822CA9B202000D09A7 /* NewsTop.swift */; };
 		C730CC852CA9B277000D09A7 /* NewsTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C730CC842CA9B277000D09A7 /* NewsTabs.swift */; };
 		C73BA5902BEB946C00A5B828 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = C73BA58F2BEB946C00A5B828 /* FeedKit */; };
+		C77308402CD8F03E00CDD24B /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C773083F2CD8F03E00CDD24B /* CategoryView.swift */; };
+		C7A345672CD7C6AB004D1009 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A345662CD7C6AA004D1009 /* MenuView.swift */; };
 		C7A402AF2BE51324005E5F71 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A402AE2BE51324005E5F71 /* HomeViewModel.swift */; };
 		C7A402B32BE513A3005E5F71 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A402B22BE513A3005E5F71 /* Home.swift */; };
-		C7A402B82BE51484005E5F71 /* ArticleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A402B62BE51484005E5F71 /* ArticleCard.swift */; };
 		C7A402B92BE51484005E5F71 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A402B72BE51484005E5F71 /* WebView.swift */; };
 		C7D7F9D62CD6886600207A7E /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D7F9D52CD6886400207A7E /* Shimmer.swift */; };
 		C7D832202BE3D50C0037D5A9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C7D8321F2BE3D50C0037D5A9 /* SDWebImageSwiftUI */; };
@@ -34,9 +35,10 @@
 		C730CC802CA9B189000D09A7 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		C730CC822CA9B202000D09A7 /* NewsTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTop.swift; sourceTree = "<group>"; };
 		C730CC842CA9B277000D09A7 /* NewsTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTabs.swift; sourceTree = "<group>"; };
+		C773083F2CD8F03E00CDD24B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		C7A345662CD7C6AA004D1009 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		C7A402AE2BE51324005E5F71 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C7A402B22BE513A3005E5F71 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		C7A402B62BE51484005E5F71 /* ArticleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCard.swift; sourceTree = "<group>"; };
 		C7A402B72BE51484005E5F71 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		C7D7F9D52CD6886400207A7E /* Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmer.swift; sourceTree = "<group>"; };
 		C7E265CB2CA87686004B6AE3 /* LentaFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LentaFeedService.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				C730CC842CA9B277000D09A7 /* NewsTabs.swift */,
 				C730CC822CA9B202000D09A7 /* NewsTop.swift */,
 				C730CC802CA9B189000D09A7 /* NewsView.swift */,
+				C773083F2CD8F03E00CDD24B /* CategoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,8 +129,8 @@
 		C7A402BA2BE51496005E5F71 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				C7A345662CD7C6AA004D1009 /* MenuView.swift */,
 				C7D7F9D52CD6886400207A7E /* Shimmer.swift */,
-				C7A402B62BE51484005E5F71 /* ArticleCard.swift */,
 				C7A402B72BE51484005E5F71 /* WebView.swift */,
 			);
 			path = ViewComponents;
@@ -214,10 +217,11 @@
 				C730CC852CA9B277000D09A7 /* NewsTabs.swift in Sources */,
 				C7D7F9D62CD6886600207A7E /* Shimmer.swift in Sources */,
 				C7A402B92BE51484005E5F71 /* WebView.swift in Sources */,
-				C7A402B82BE51484005E5F71 /* ArticleCard.swift in Sources */,
 				C7E265CC2CA87686004B6AE3 /* LentaFeedService.swift in Sources */,
 				C730CC812CA9B189000D09A7 /* NewsView.swift in Sources */,
 				55C67E712AB301C40046F07C /* ContentView.swift in Sources */,
+				C7A345672CD7C6AB004D1009 /* MenuView.swift in Sources */,
+				C77308402CD8F03E00CDD24B /* CategoryView.swift in Sources */,
 				C7A402B32BE513A3005E5F71 /* Home.swift in Sources */,
 				C730CC832CA9B202000D09A7 /* NewsTop.swift in Sources */,
 				55C67E6F2AB301C40046F07C /* NewsRSSReaderApp.swift in Sources */,
@@ -360,8 +364,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,8 +394,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

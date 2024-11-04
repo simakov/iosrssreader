@@ -5,12 +5,12 @@
 //  Created by Andrey Simakov on 03.05.2024.
 //
 
-
 import SwiftUI
 
 final class HomeViewModel: ObservableObject {
     // MARK: - Outputs
     @Published private(set) var rssFeed: [NewsItem] = []
+    @Published var categoryFeed: [NewsItem] = []
     @Published var isLoading = false
     @Published var isShowError = false
     @Published var firstNews: NewsItem?
@@ -19,13 +19,13 @@ final class HomeViewModel: ObservableObject {
             changeTab(to: tab)
         }
     }
+    @Published var categories: [String] = []
+    @Published var selectedCategory: String = "" {
+        didSet {
+            filteredNews()
+        }
+    }
     
-    var allFeed: [NewsItem] = []
-    var rssTopFeed: [NewsItem] = []
-    var rssLast24Feed: [NewsItem] = []
-    var lastIndex = 0
-    var itemsOnPage = 10
-
     init(prewiew: Bool = false) {
         if prewiew {
             for _ in 0..<10 {
@@ -34,6 +34,7 @@ final class HomeViewModel: ObservableObject {
             firstNews = rssFeed.first
         } else {
             loadFeeds(source: .top7)
+            preloadCategories()
         }
     }
 
@@ -47,19 +48,60 @@ final class HomeViewModel: ObservableObject {
         default:
             loadFeeds(source: .all)
         }
-        lastIndex = source
     }
     
     public func loadFeeds(source: LentaFeedService.Source) {
         LentaFeedService.shared.getFeed(source: source) { (result) in
             switch result {
             case .success(let feed):
-                self.rssFeed = Array(feed[1..<feed.count])
-                self.firstNews = feed.first
+                DispatchQueue.main.async {
+                    self.rssFeed = Array(feed[1..<feed.count])
+                    self.firstNews = feed.first
+                }
             case .failure(let error):
                 print(error)
                 self.isShowError = true
             }
         }
+    }
+    
+    private func fillCategories(_ items: [NewsItem]) {
+        var categoriesSet = Set<String>()
+        items.forEach { item in
+            if let categories = item.categories {
+                categories.forEach { category in
+                    categoriesSet.insert(category)
+                }
+            }
+        }
+        self.categories = categoriesSet.sorted()
+    }
+    
+    private func preloadCategories() {
+        LentaFeedService.shared.getFeed(source: .all) { (result) in
+            switch result {
+            case .success(let feed):
+                DispatchQueue.main.async {
+                    self.fillCategories(feed)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func filteredNews() {
+        categoryFeed = []
+        LentaFeedService.shared.getFeed(source: .all) { (result) in
+            switch result {
+            case .success(let feed):
+                DispatchQueue.main.async {
+                    self.categoryFeed = feed.filter { $0.categories?.contains(self.selectedCategory) == true }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
     }
 }

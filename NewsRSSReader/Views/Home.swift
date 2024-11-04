@@ -12,8 +12,9 @@ struct Home: View {
     let itemOnPage:Int = 10
     @StateObject var viewModel: HomeViewModel
     var body: some View {
-        if viewModel.firstNews != nil {
-            NewsTop(data: Binding.constant(viewModel.firstNews!))
+        if let firstNews = viewModel.firstNews {
+            NewsTop(data: Binding.constant(firstNews))
+                .id(0)
         }
         NewsTabs(tab: $viewModel.tab)
         LazyVStack(alignment: .leading) {
