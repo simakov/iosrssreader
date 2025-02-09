@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     @Binding var menuShow: Bool
-    var categories: [String]
+    let categories: [String:String]
     @Binding var selectedCategory: String
     var body: some View {
         VStack{
@@ -38,10 +38,10 @@ struct MenuView: View {
                     }
                 }
                 .padding(.bottom, 4)
-            ForEach(categories, id: \.self) { category in
-                MenuItem(title: category, selected: category == selectedCategory)
+            ForEach(Array(categories.keys), id: \.self) { key in
+                MenuItem(title: categories[key] ?? "", selected: key == selectedCategory)
                     .onTapGesture {
-                        selectedCategory = category
+                        selectedCategory = key
                         menuShow.toggle()
                     }
                     .padding(.bottom, 4)
@@ -86,7 +86,9 @@ struct MenuItem: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        let categories: [String] = ["Мир", "Спорт", "Наука"]
+        let categories: [String:String] = ["world":"Мир",
+                                           "sport": "Спорт",
+                                           "science": "Наука"]
         MenuView(menuShow: .constant(true), categories: categories, selectedCategory: .constant(""))
     }
 }

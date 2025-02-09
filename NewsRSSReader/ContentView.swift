@@ -54,7 +54,7 @@ struct ContentView: View {
                     if !homeViewModel.selectedCategory.isEmpty {
                         ScrollViewReader { proxy in
                             ScrollView(.vertical) {
-                                CategoryView(news: $homeViewModel.categoryFeed, title: homeViewModel.selectedCategory)
+                                CategoryView(news: $homeViewModel.categoryFeed, title: homeViewModel.categories[homeViewModel.selectedCategory] ?? homeViewModel.selectedCategory)
                                     .onChange(of: shouldScrollToTop) { value in
                                         proxy.scrollTo(0, anchor: .top)
                                     }

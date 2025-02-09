@@ -19,14 +19,15 @@ final class HomeViewModel: ObservableObject {
             changeTab(to: tab)
         }
     }
-    @Published var categories: [String] = []
+    @Published var categories: [String: String]
     @Published var selectedCategory: String = "" {
         didSet {
-            filteredNews()
+            filteredNews(category: selectedCategory)
         }
     }
     
     init(prewiew: Bool = false) {
+        categories = LentaFeedService.shared.categories
         if prewiew {
             for _ in 0..<10 {
                 rssFeed.append(NewsItem.sample)
@@ -34,7 +35,6 @@ final class HomeViewModel: ObservableObject {
             firstNews = rssFeed.first
         } else {
             loadFeeds(source: .top7)
-            preloadCategories()
         }
     }
 
@@ -65,38 +65,13 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
-    private func fillCategories(_ items: [NewsItem]) {
-        var categoriesSet = Set<String>()
-        items.forEach { item in
-            if let categories = item.categories {
-                categories.forEach { category in
-                    categoriesSet.insert(category)
-                }
-            }
-        }
-        self.categories = categoriesSet.sorted()
-    }
-    
-    private func preloadCategories() {
-        LentaFeedService.shared.getFeed(source: .all) { (result) in
-            switch result {
-            case .success(let feed):
-                DispatchQueue.main.async {
-                    self.fillCategories(feed)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    private func filteredNews() {
+    private func filteredNews(category: String? = nil) {
         categoryFeed = []
-        LentaFeedService.shared.getFeed(source: .all) { (result) in
+        LentaFeedService.shared.getFeed(source: .all, category: category) { (result) in
             switch result {
             case .success(let feed):
                 DispatchQueue.main.async {
-                    self.categoryFeed = feed.filter { $0.categories?.contains(self.selectedCategory) == true }
+                    self.categoryFeed = feed
                 }
             case .failure(let error):
                 print(error)

@@ -2,17 +2,39 @@ import FeedKit
 import Foundation
 
 class LentaFeedService {
-    let basePath = "https://api.lenta.ru/rss/"
+    let basePath = "https://lenta.ru/rss"
     enum Source: String {
         case top7 = "top7"
         case last24 = "last24"
-        case all = ""
+        case all = "news"
     }
+    public let categories: [String: String] = [
+        "russia": "Россия",
+        "world": "Мир",
+        "ussr": "Бывший СССР",
+        "economics": "Экономика",
+        "forces": "Силовые структуры",
+        "science": "Наука и техника",
+        "culture": "Культура",
+        "sport": "Спорт",
+        "media": "Интернет и СМИ",
+        "style": "Ценности",
+        "travel": "Путешествия",
+        "life": "Из жизни",
+        "realty": "Среда обитания",
+        "wellness": "Забота о себе",
+        "pobeda80": "Победа"
+    ]
+
     static let shared = LentaFeedService()
     private init() {}
 
-    func getFeed(source: Source, completion: @escaping (Result<[NewsItem], Error>) -> Void) {
-        guard let feedURL = URL(string: basePath + "/" + source.rawValue) else { return }
+    func getFeed(source: Source, category: String? = nil, completion: @escaping (Result<[NewsItem], Error>) -> Void) {
+        var urlString = [basePath, source.rawValue]
+        if let category = category {
+            urlString.append(category)
+        }
+        guard let feedURL = URL(string: urlString.joined(separator: "/")) else { return }
             let parser = FeedParser(URL: feedURL)
         parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
             switch result {
