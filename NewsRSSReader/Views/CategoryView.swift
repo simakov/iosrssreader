@@ -28,7 +28,7 @@ struct CategoryView: View {
                 ForEach(news) { item in
                     if let link = item.link {
                         NavigationLink(
-                            destination: WebView(url: URL(string: link)!),
+                            destination: ArticleDetailView(newsItem: item),
                             label: {
                                 NewsView(data: item)
                             })

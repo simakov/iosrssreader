@@ -14,7 +14,7 @@ struct NewsTop: View {
             VStack{
                 Spacer()
                 NavigationLink(
-                    destination: WebView(url: linkUrl),
+                    destination: ArticleDetailView(newsItem: data),
                     label: {
                         Text(data.title ?? "")
                             .font(.system(size: 20, weight: .semibold))
