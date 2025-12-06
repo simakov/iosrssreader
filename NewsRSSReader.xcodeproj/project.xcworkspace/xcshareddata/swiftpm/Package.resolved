@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "f6afa0132961d593f07970d84e2d8b588c29ea04",
-        "version" : "5.19.1"
+        "revision" : "e53f6226eaab490291096cfbd9b2b109ea968e8d",
+        "version" : "5.21.4"
       }
     },
     {
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
       "state" : {
-        "revision" : "b7af5e6bd9c2987e41730400d1baad13d74a141a",
-        "version" : "3.0.4"
+        "revision" : "0e331457ca9af2f0b08bcaa138a91ffb907b004f",
+        "version" : "3.1.4"
       }
     },
     {
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scinfu/SwiftSoup.git",
       "state" : {
-        "revision" : "4206bc7b8bd9a4ff8e9511211e1b4bff979ef9c4",
-        "version" : "2.11.1"
+        "revision" : "c1f3348d1845302b8e99b1c0787d9417ffa11053",
+        "version" : "2.11.2"
       }
     }
   ],
