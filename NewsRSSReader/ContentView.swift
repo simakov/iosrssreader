@@ -8,6 +8,7 @@
 import SwiftUI
 import SDWebImage
 import SDWebImageSwiftUI
+import NewsRSSReaderShared
 
 struct ContentView: View {
     @State var shouldScrollToTop = false

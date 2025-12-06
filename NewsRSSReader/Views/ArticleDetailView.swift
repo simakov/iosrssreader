@@ -7,8 +7,9 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import NewsRSSReaderShared
 
-/// View для отображения полной статьи с нативным рендерингом контента
+/// View for displaying a full article with native content rendering
 struct ArticleDetailView: View {
     let newsItem: NewsItem
 
@@ -20,7 +21,7 @@ struct ArticleDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                // Заголовок статьи (из RSS feed)
+                // Article title (from RSS feed)
                 Text(newsItem.title ?? "")
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color("Black"))
@@ -29,14 +30,14 @@ struct ArticleDetailView: View {
                     .padding(.top, 16)
                     .padding(.bottom, 12)
 
-                // Дата публикации
+                // Publication date
                 Text(newsItem.publishedDate())
                     .font(.system(size: 13))
                     .foregroundColor(Color("Gray"))
                     .padding(.horizontal, 16)
                     .padding(.bottom, 16)
 
-                // Главное изображение (из RSS feed)
+                // Main image (from RSS feed)
                 if let imageUrl = newsItem.image {
                     WebImage(url: URL(string: imageUrl))
                         .resizable()
@@ -47,9 +48,9 @@ struct ArticleDetailView: View {
                         .padding(.bottom, 16)
                 }
 
-                // Контент статьи или shimmer при загрузке
+                // Article content or shimmer while loading
                 if isLoading {
-                    // Shimmer placeholder для параграфов
+                    // Shimmer placeholder for paragraphs
                     VStack(spacing: 12) {
                         ForEach(0..<5, id: \.self) { _ in
                             ShimmerParagraphPlaceholder()
@@ -58,13 +59,13 @@ struct ArticleDetailView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
                 } else if let error = error {
-                    // Показываем ошибку
+                    // Show error
                     VStack(spacing: 16) {
                         Image(systemName: "exclamationmark.triangle")
                             .font(.system(size: 48))
                             .foregroundColor(Color("Red"))
 
-                        Text("Ошибка загрузки статьи")
+                        Text("Article loading error")
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(Color("Black"))
 
@@ -76,7 +77,7 @@ struct ArticleDetailView: View {
                     .padding(32)
                     .frame(maxWidth: .infinity)
                 } else if let content = articleContent {
-                    // Рендерим parsed контент
+                    // Render parsed content
                     VStack(alignment: .leading, spacing: 0) {
                         ForEach(Array(content.content.enumerated()), id: \.offset) { index, item in
                             renderContentItem(item)
@@ -94,7 +95,7 @@ struct ArticleDetailView: View {
 
     // MARK: - Content Rendering
 
-    /// Рендерит элемент контента в зависимости от его типа
+    /// Renders a content element depending on its type
     @ViewBuilder
     private func renderContentItem(_ item: ArticleContentType) -> some View {
         switch item {
@@ -117,30 +118,30 @@ struct ArticleDetailView: View {
             ArticleInfoBoxView(text: text)
 
         case .relatedMaterial(_, _, _, _, _):
-            // Пока не показываем related materials
+            // Not showing related materials yet
             EmptyView()
         }
     }
 
     // MARK: - Article Loading
 
-    /// Загружает статью по URL
+    /// Loads article by URL
     private func loadArticle() {
         guard let articleUrl = newsItem.link else {
             self.error = NSError(
                 domain: "ArticleDetailView",
                 code: -1,
-                userInfo: [NSLocalizedDescriptionKey: "URL статьи отсутствует"]
+                userInfo: [NSLocalizedDescriptionKey: "Article URL is missing"]
             )
             self.isLoading = false
             return
         }
 
-        // Загружаем HTML
+        // Load HTML
         ArticleLoaderService.shared.loadArticle(url: articleUrl) { result in
             switch result {
             case .success(let html):
-                // Парсим HTML
+                // Parse HTML
                 if let parsedContent = LentaArticleParser.shared.parse(html: html, existingNewsItem: newsItem) {
                     self.articleContent = parsedContent
                     self.isLoading = false
@@ -148,7 +149,7 @@ struct ArticleDetailView: View {
                     self.error = NSError(
                         domain: "ArticleDetailView",
                         code: -2,
-                        userInfo: [NSLocalizedDescriptionKey: "Не удалось распарсить статью"]
+                        userInfo: [NSLocalizedDescriptionKey: "Failed to parse article"]
                     )
                     self.isLoading = false
                 }
@@ -163,7 +164,7 @@ struct ArticleDetailView: View {
 
 // MARK: - Shimmer Placeholder
 
-/// Placeholder для параграфа с shimmer эффектом
+/// Placeholder for paragraph with shimmer effect
 struct ShimmerParagraphPlaceholder: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -190,8 +191,8 @@ struct ShimmerParagraphPlaceholder: View {
     NavigationView {
         ArticleDetailView(
             newsItem: NewsItem(
-                title: "Пример заголовка новости для предпросмотра",
-                summary: "Краткое описание",
+                title: "Example news headline for preview",
+                summary: "Brief description",
                 authors: nil,
                 link: "https://lenta.ru/news/2024/11/14/example/",
                 updated: nil,

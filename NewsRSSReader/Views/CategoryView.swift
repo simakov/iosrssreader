@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NewsRSSReaderShared
 
 struct CategoryView: View {
     @Binding var news: [NewsItem]

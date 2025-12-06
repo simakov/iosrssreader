@@ -1,4 +1,22 @@
+# XcodeGen - игнорировать сгенерированный проект
+*.xcodeproj
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+xcuserdata/
+
+# OS Files
+.DS_Store
+
+# Claude
 CLAUDE.md
 .claude/settings.local.json
-NewsRSSReader.xcodeproj/xcuserdata/andrey.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
-NewsRSSReader.xcodeproj/project.xcworkspace/xcuserdata/andrey.xcuserdatad/UserInterfaceState.xcuserstate
+
+# Build
+build/
+DerivedData/
+*.ipa
+*.dSYM.zip
+
+# Swift Package Manager
+.build/
+.swiftpm/

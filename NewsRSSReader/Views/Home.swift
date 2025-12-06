@@ -7,6 +7,7 @@ import SwiftUI
 import SDWebImage
 import FeedKit
 import SDWebImageSwiftUI
+import NewsRSSReaderShared
 
 struct Home: View {
     let itemOnPage:Int = 10

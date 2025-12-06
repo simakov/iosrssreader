@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import SDWebImageSwiftUI
+import NewsRSSReaderShared
 
 struct NewsView: View {
     @State var data: NewsItem

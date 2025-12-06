@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import SDWebImageSwiftUI
+import NewsRSSReaderShared
 
 struct NewsTop: View {
     @Binding var data: NewsItem
