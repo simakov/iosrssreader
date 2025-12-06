@@ -20,7 +20,11 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>UILaunchScreen</key>
-	<dict/>
+	<key>WKApplication</key>
+	<true/>
+	<key>WKCompanionAppBundleIdentifier</key>
+	<string>com.yourcompany.NewsRSSReader</string>
+	<key>WKWatchOnly</key>
+	<false/>
 </dict>
 </plist>

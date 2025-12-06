@@ -2,65 +2,58 @@
 //  Home.swift
 //  RssReader
 //
-//  Created by Tomoyuki Murakami on 2021/01/08.
-//  Copyright © 2021 tomoyukim. All rights reserved.
-//
 
 import SwiftUI
 import SDWebImage
 import FeedKit
 import SDWebImageSwiftUI
+import NewsRSSReaderShared
 
 struct Home: View {
-    @StateObject public var viewModel: HomeViewModel
+    let itemOnPage:Int = 10
+    @StateObject var viewModel: HomeViewModel
     var body: some View {
-        if viewModel.isLoading {
-            Text("Loading...")
-                .font(.headline)
-                .foregroundColor(.gray)
-                .offset(x: 0, y: -200)
-                .navigationBarTitle("", displayMode: .inline)
-        } else {
-            
-            if let first = viewModel.firstNews  {
-                NewsTopView(data: first)
-            }
-            //            NewsTabs()
-            ForEach(viewModel.rssFeed) { item in
-                if (item.link != nil) {
-                    NavigationLink(
-                        destination: DetailNewsView(.init(from: item)),
-                        label: {
-                            NewsView(data: item)
-                            
-                        })
-                }
-                Divider()
-            }
-            Button {
-                self.viewModel.addMore()
-            }
-        label: {
-            Text("Больше новостей")
-                .font(.system(size: 15, weight: .semibold))
-                .foregroundColor(Color("Black"))
-                .textCase(.uppercase)
-                .padding(.top, 7)
-                .padding(.bottom, 7)
-                .padding(.leading, 15)
-                .padding(.trailing, 15)
-                .border(Color("LigthGrey"))
-                .padding(.top,10)
+        if let firstNews = viewModel.firstNews {
+            NewsTop(data: Binding.constant(firstNews))
+                .id(0)
         }
+        NewsTabs(tab: $viewModel.tab)
+        LazyVStack(alignment: .leading) {
+            if viewModel.rssFeed.count == 0 {
+                ForEach(0..<7) { _ in
+                    NewsView(data: NewsItem.sample)
+                        .redacted(reason: .placeholder)
+                        .shimmering()
+                }
+            } else {
+                ForEach(viewModel.rssFeed) { item in
+                    if let link = item.link {
+                        NavigationLink(
+                            destination: ArticleDetailView(newsItem: item),
+                            label: {
+                                NewsView(data: item)
+                            })
+                        Divider()
+                    }
+                }
+            }
         }
     }
 }
 
+struct FadeDownViewModifier: ViewModifier{
+    func body(content: Content) -> some View {
+        return content
+            .overlay(
+                LinearGradient(gradient: Gradient(colors: [.clear, Color("Background")]),
+                               startPoint: .center,
+                               endPoint: .bottom)
+            )
+    }
+}
 
-
-//
-//struct Home_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Home()
-//    }
-//}
+struct Home_Previews: PreviewProvider {
+    static var previews: some View {
+        Home(viewModel: HomeViewModel(prewiew: true))
+    }
+}

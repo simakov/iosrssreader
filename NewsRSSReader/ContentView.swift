@@ -8,37 +8,71 @@
 import SwiftUI
 import SDWebImage
 import SDWebImageSwiftUI
+import NewsRSSReaderShared
 
 struct ContentView: View {
-    @StateObject private var viewModel: HomeViewModel = .init("https://lenta.ru/rss")
+    @State var shouldScrollToTop = false
+    @State var menuShow = false
+    @StateObject var homeViewModel = HomeViewModel()
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                HStack{
-                    Image(systemName: "line.horizontal.3")
-                        .foregroundColor(Color("White"))
-                        .padding(10)
-                    
-                    Image("logo")
-                        .resizable()
-                        .frame(width: 120.0, height: 20.0)
-                        .padding(10)
-                    
-                    Spacer()
-                    Button(action: {
-                        viewModel.load()
-                    }, label: {
-                        Image(systemName: "arrow.clockwise")
+        if menuShow {
+            ZStack{
+                MenuView(menuShow: $menuShow, categories: homeViewModel.categories, selectedCategory: $homeViewModel.selectedCategory)
+                Spacer()
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color("Background"))
+        } else {
+            NavigationView {
+                VStack(spacing: 0) {
+                    HStack{
+                        Button(action: {
+                            withAnimation {
+                                menuShow.toggle()
+                            }
+                        }, label: {
+                            Image(systemName: "line.horizontal.3")
+                                .foregroundColor(Color("White"))
+                                .padding(10)
+                        })
+                        Image("logo")
                             .resizable()
-                            .foregroundColor(Color("White"))
-                            .frame(width: 15.0, height: 15.0)
+                            .frame(width: 120.0, height: 20.0)
                             .padding(10)
-                    })
+                            .onTapGesture {
+                                withAnimation {
+                                    shouldScrollToTop.toggle()
+                                }
+                            }
+                        Spacer()
+                            .onTapGesture {
+                                withAnimation {
+                                    shouldScrollToTop.toggle()
+                                }
+                            }
+                    }.background(Color("Background"))
                     
-                }.background(Color("Background"))
-                ScrollView(.vertical) {
-                    Home(viewModel: viewModel)
-                    Spacer()
+                    
+                    if !homeViewModel.selectedCategory.isEmpty {
+                        ScrollViewReader { proxy in
+                            ScrollView(.vertical) {
+                                CategoryView(news: $homeViewModel.categoryFeed, title: homeViewModel.categories[homeViewModel.selectedCategory] ?? homeViewModel.selectedCategory)
+                                    .onChange(of: shouldScrollToTop) { value in
+                                        proxy.scrollTo(0, anchor: .top)
+                                    }
+                                Spacer()
+                            }
+                        }
+                    } else {
+                        ScrollViewReader { proxy in
+                            ScrollView(.vertical) {
+                                Home(viewModel: homeViewModel)
+                                    .onChange(of: shouldScrollToTop) { value in
+                                        proxy.scrollTo(0, anchor: .top)
+                                    }
+                                Spacer()
+                            }
+                        }
+                    }
                 }
             }
         }
