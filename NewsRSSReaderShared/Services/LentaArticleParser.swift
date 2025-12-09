@@ -68,6 +68,12 @@ public class LentaArticleParser {
                 }
             }
 
+            // Fallback: try to extract text from JSON-LD structured data
+            if content.isEmpty {
+                let jsonLDContent = self.parseJSONLD(doc: doc)
+                content.append(contentsOf: jsonLDContent)
+            }
+
             return ArticleContent(
                 title: existingNewsItem.title ?? "",
                 image: existingNewsItem.image,
@@ -281,5 +287,56 @@ public class LentaArticleParser {
         }
 
         return nil
+    }
+    
+    /// Parses JSON-LD structured data from script tag
+    /// Returns array of content items (author + article body)
+    private func parseJSONLD(doc: Document) -> [ArticleContentType] {
+        var content: [ArticleContentType] = []
+        
+        do {
+            // Find script tag with type="application/ld+json"
+            let scripts = try doc.select("script[type=application/ld+json]")
+            
+            for script in scripts {
+                let jsonString = try script.html()
+                
+                guard let jsonData = jsonString.data(using: .utf8) else { continue }
+                
+                if let json = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] {
+                    
+                    // Extract author information
+                    if let authorDict = json["author"] as? [String: Any],
+                       let authorName = authorDict["name"] as? String,
+                       !authorName.isEmpty {
+                        
+                        // URL can contain author's page link
+                        // Photo is usually not in JSON-LD, but we can check
+                        let authorUrl = authorDict["url"] as? String
+                        
+                        content.append(.author(
+                            name: authorName,
+                            photo: nil, // JSON-LD usually doesn't have author photo
+                            jobTitle: nil // Can add if needed
+                        ))
+                    }
+                    
+                    // Extract article body
+                    if let articleBody = json["articleBody"] as? String,
+                       !articleBody.isEmpty {
+                        content.append(.paragraph(text: articleBody, isLead: false))
+                    }
+                    
+                    // If we found something, break out of loop
+                    if !content.isEmpty {
+                        break
+                    }
+                }
+            }
+        } catch {
+            // Ignore parsing errors
+        }
+        
+        return content
     }
 }

@@ -51,8 +51,8 @@ public struct ArticleAuthorView: View {
 
                 if let title = jobTitle, !title.isEmpty {
                     Text(title)
-                        .font(.system(size: platformSize(ios: 14, watch: 12)))
-                        .foregroundColor(Color("Gray"))
+                        .font(.system(size: platformSize(ios: 12, watch: 10)))
+                        .foregroundColor(Color("Gray").opacity(0.6))
                 }
             }
 

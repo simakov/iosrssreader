@@ -8,6 +8,7 @@
 import SwiftUI
 import FeedKit
 import SDWebImageSwiftUI
+import NewsRSSReaderShared
 
 struct NewsTopView: View {
     @State var data: RSSFeedItem
@@ -16,7 +17,7 @@ struct NewsTopView: View {
             VStack(alignment: .leading) {
                 Spacer()
                     NavigationLink(
-                        destination: DetailNewsView( .init(from: data)),
+                        destination: ArticleDetailView(newsItem: NewsItem(from: data)),
                         label: {
                             Text(data.title ?? "")
                                 .font(.system(size: 20, weight: .semibold))

@@ -16,6 +16,7 @@ struct ArticleDetailView: View {
     @State private var articleContent: ArticleContent?
     @State private var isLoading = true
     @State private var error: Error?
+    @State private var showShareSheet = false
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -88,6 +89,21 @@ struct ArticleDetailView: View {
         }
         .background(Color("BlackInversed"))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showShareSheet = true
+                }) {
+                    Image(systemName: "square.and.arrow.up")
+                        .foregroundColor(Color("Black"))
+                }
+            }
+        }
+        .sheet(isPresented: $showShareSheet) {
+            if let link = newsItem.link {
+                ShareSheet(items: ["\(newsItem.title ?? "")\n\n\(link)"])
+            }
+        }
         .onAppear {
             loadArticle()
         }
@@ -184,6 +200,48 @@ struct ShimmerParagraphPlaceholder: View {
                 .cornerRadius(4)
         }
         .shimmering()
+    }
+}
+
+// MARK: - Share Sheet
+
+/// UIActivityViewController wrapper for sharing
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(
+            activityItems: items,
+            applicationActivities: nil
+        )
+        
+        // Configure for iPad popover presentation
+        if let popover = controller.popoverPresentationController {
+            // Set a default source rect in case we can't find the window
+            popover.sourceRect = CGRect(x: UIScreen.main.bounds.width - 50, y: 50, width: 0, height: 0)
+            popover.permittedArrowDirections = .up
+        }
+        
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // Configure popover after presentation if needed
+        DispatchQueue.main.async {
+            if let popover = uiViewController.popoverPresentationController,
+               let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = scene.windows.first(where: { $0.isKeyWindow }) {
+                
+                popover.sourceView = window
+                popover.sourceRect = CGRect(
+                    x: window.bounds.width - 50,
+                    y: window.safeAreaInsets.top + 10,
+                    width: 0,
+                    height: 0
+                )
+                popover.permittedArrowDirections = .up
+            }
+        }
     }
 }
 

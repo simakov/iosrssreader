@@ -89,7 +89,7 @@ targets:
     info:
       path: NewsRSSReader/Info.plist
       properties:
-        CFBundleDisplayName: "Лента.ру"
+        CFBundleDisplayName: "Lenta"
         UILaunchScreen: {}
     settings:
       base:
@@ -119,7 +119,7 @@ targets:
     info:
       path: NewsRSSReaderWatch/Info.plist
       properties:
-        CFBundleDisplayName: "Лента.ру"
+        CFBundleDisplayName: "Lenta"
         WKApplication: true
         WKCompanionAppBundleIdentifier: com.yourcompany.NewsRSSReader
         WKWatchOnly: false
