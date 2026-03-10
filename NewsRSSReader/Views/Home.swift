@@ -5,7 +5,6 @@
 
 import SwiftUI
 import SDWebImage
-import FeedKit
 import SDWebImageSwiftUI
 import NewsRSSReaderShared
 

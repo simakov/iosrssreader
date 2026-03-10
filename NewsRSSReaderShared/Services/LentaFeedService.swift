@@ -5,7 +5,6 @@
 //  Platform-agnostic RSS feed service for iOS and watchOS
 //
 
-import FeedKit
 import Foundation
 
 public class LentaFeedService {
@@ -37,85 +36,65 @@ public class LentaFeedService {
 
     public static let shared = LentaFeedService()
 
+    private let urlSession: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.waitsForConnectivity = true
+        config.timeoutIntervalForResource = 30
+        return URLSession(configuration: config)
+    }()
+
     // App Groups for shared data between app and widget
-    private let userDefaults = UserDefaults(suiteName: "group.com.yourcompany.newsrssreader")
+    private var userDefaults: UserDefaults? {
+        return UserDefaults(suiteName: "group.com.yourcompany.newsrssreader")
+    }
 
     private init() {}
 
     public func getFeed(source: Source, category: String? = nil, completion: @escaping (Result<[NewsItem], Error>) -> Void) {
-        var urlString = [basePath, source.rawValue]
+        var urlComponents = [basePath, source.rawValue]
         if let category = category {
-            urlString.append(category)
+            urlComponents.append(category)
         }
-        guard let feedURL = URL(string: urlString.joined(separator: "/")) else { return }
-        let parser = FeedParser(URL: feedURL)
-        parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
-            switch result {
-            case .success(let feed):
-                switch feed {
-                case let .atom(atom):
-                    guard let entries = atom.entries else {
-                        completion(.failure(NSError()))
-                        return
-                    }
-                    let items = entries.compactMap { NewsItem(from: $0) }
+        guard let feedURL = URL(string: urlComponents.joined(separator: "/")) else { return }
 
-                    // Cache top news for widget
-                    if source == .top7 && category == nil {
-                        self.cacheTopNews(items)
-                    }
-
-                    completion(.success(items))
-                    break
-                case .json(let json):
-                    guard let entries = json.items else {
-                        completion(.failure(NSError()))
-                        return
-                    }
-                    let items = entries.compactMap { NewsItem(from: $0) }
-
-                    // Cache top news for widget
-                    if source == .top7 && category == nil {
-                        self.cacheTopNews(items)
-                    }
-
-                    completion(.success(items))
-                case let .rss(feed):
-                    guard let entries = feed.items else {
-                        completion(.failure(NSError()))
-                        return
-                    }
-                    let items = entries.compactMap { NewsItem(from: $0) }
-
-                    // Cache top news for widget
-                    if source == .top7 && category == nil {
-                        self.cacheTopNews(items)
-                    }
-
-                    completion(.success(items))
-                }
-
-            case .failure(let error):
+        urlSession.dataTask(with: feedURL) { [weak self] data, _, error in
+            if let error = error {
                 completion(.failure(error))
+                return
             }
-        }
+            guard let data = data else {
+                completion(.failure(NSError(domain: "LentaFeedService", code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "No data received"])))
+                return
+            }
+
+            let result = LentaRSSParser().parse(data: data)
+
+            if case .success(let items) = result, source == .top7 && category == nil {
+                self?.cacheTopNews(items)
+            }
+
+            completion(result)
+        }.resume()
     }
 
     // MARK: - Caching for Widget
 
-    /// Caches top news for use in widget
     public func cacheTopNews(_ items: [NewsItem]) {
-        if let encoded = try? JSONEncoder().encode(items) {
-            userDefaults?.set(encoded, forKey: "cachedTopNews")
+        guard let encoded = try? JSONEncoder().encode(items) else {
+            print("[LentaFeedService] Failed to encode news items for caching")
+            return
         }
+        guard let defaults = userDefaults else {
+            print("[LentaFeedService] App Group UserDefaults not available, skipping cache")
+            return
+        }
+        defaults.set(encoded, forKey: "cachedTopNews")
     }
 
-    /// Gets cached top news
     public func getCachedTopNews() -> [NewsItem]? {
-        guard let data = userDefaults?.data(forKey: "cachedTopNews"),
-              let items = try? JSONDecoder().decode([NewsItem].self, from: data) else {
-            return nil
-        }
-        return items
+        guard let defaults = userDefaults else { return nil }
+        guard let data = defaults.data(forKey: "cachedTopNews") else { return nil }
+        return try? JSONDecoder().decode([NewsItem].self, from: data)
     }
 }
