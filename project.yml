@@ -30,9 +30,6 @@ packages:
   SDWebImageSwiftUI:
     url: https://github.com/SDWebImage/SDWebImageSwiftUI.git
     from: 3.1.4
-  SwiftSoup:
-    url: https://github.com/scinfu/SwiftSoup.git
-    from: 2.11.2
 
 targets:
   # ===================================
@@ -48,7 +45,6 @@ targets:
     resources:
       - NewsRSSReaderShared/Assets.xcassets
     dependencies:
-      - package: SwiftSoup
       - package: SDWebImageSwiftUI
     settings:
       base:
