@@ -39,7 +39,9 @@ public final class HomeViewModel: ObservableObject {
     }
 
     public func changeTab(to source: Int) {
-        self.rssFeed = []
+        DispatchQueue.main.async {
+            self.rssFeed = []
+        }
         switch source {
         case 0:
             loadFeeds(source: .top7)
@@ -60,13 +62,17 @@ public final class HomeViewModel: ObservableObject {
                 }
             case .failure(let error):
                 print(error)
-                self.isShowError = true
+                DispatchQueue.main.async {
+                    self.isShowError = true
+                }
             }
         }
     }
 
     private func filteredNews(category: String? = nil) {
-        categoryFeed = []
+        DispatchQueue.main.async {
+            self.categoryFeed = []
+        }
         LentaFeedService.shared.getFeed(source: .all, category: category) { (result) in
             switch result {
             case .success(let feed):
