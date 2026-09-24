@@ -1,7 +1,7 @@
 name: NewsRSSReader
 
 options:
-  bundleIdPrefix: com.yourcompany
+  bundleIdPrefix: net.idscan.lentareader
   deploymentTarget:
     iOS: "16.4"
     watchOS: "9.0"
@@ -15,6 +15,7 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.9"
+    DEVELOPMENT_TEAM: "3ZN8F3XHT4"
   configs:
     Debug:
       SWIFT_OPTIMIZATION_LEVEL: "-Onone"
@@ -49,7 +50,7 @@ targets:
     settings:
       base:
         PRODUCT_NAME: NewsRSSReaderShared
-        PRODUCT_BUNDLE_IDENTIFIER: com.yourcompany.NewsRSSReaderShared
+        PRODUCT_BUNDLE_IDENTIFIER: net.idscan.lentareader.NewsRSSReaderShared
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1,2,4"
@@ -90,7 +91,7 @@ targets:
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: NewsRSSReader/NewsRSSReader.entitlements
-        PRODUCT_BUNDLE_IDENTIFIER: com.yourcompany.NewsRSSReader
+        PRODUCT_BUNDLE_IDENTIFIER: net.idscan.lentareader.NewsRSSReader
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1,2"
@@ -118,7 +119,7 @@ targets:
       properties:
         CFBundleDisplayName: "Lenta"
         WKApplication: true
-        WKCompanionAppBundleIdentifier: com.yourcompany.NewsRSSReader
+        WKCompanionAppBundleIdentifier: net.idscan.lentareader.NewsRSSReader
         WKWatchOnly: false
         WKRunsIndependentlyOfCompanionApp: true
         NSAppTransportSecurity:
@@ -126,14 +127,14 @@ targets:
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: NewsRSSReaderWatch/NewsRSSReaderWatch.entitlements
-        PRODUCT_BUNDLE_IDENTIFIER: com.yourcompany.NewsRSSReader.watchkitapp
+        PRODUCT_BUNDLE_IDENTIFIER: net.idscan.lentareader.NewsRSSReader.watchkitapp
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "4"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         INFOPLIST_KEY_WKApplication: YES
-        INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.yourcompany.NewsRSSReader
+        INFOPLIST_KEY_WKCompanionAppBundleIdentifier: net.idscan.lentareader.NewsRSSReader
         INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp: YES
         LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
         SWIFT_EMIT_LOC_STRINGS: YES
@@ -168,7 +169,7 @@ targets:
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: "NewsRSSReaderWatch Extension/NewsRSSReaderWatch ExtensionExtension.entitlements"
-        PRODUCT_BUNDLE_IDENTIFIER: com.yourcompany.NewsRSSReader.watchkitapp.NewsWidget
+        PRODUCT_BUNDLE_IDENTIFIER: net.idscan.lentareader.NewsRSSReader.watchkitapp.NewsWidget
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "4"

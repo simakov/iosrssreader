@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.yourcompany.newsrssreader</string>
+		<string>group.net.idscan.lentareader.newsrssreader</string>
 	</array>
 </dict>
 </plist>

@@ -45,7 +45,7 @@ public class LentaFeedService {
 
     // App Groups for shared data between app and widget
     private var userDefaults: UserDefaults? {
-        return UserDefaults(suiteName: "group.com.yourcompany.newsrssreader")
+        return UserDefaults(suiteName: "group.net.idscan.lentareader.newsrssreader")
     }
 
     private init() {}

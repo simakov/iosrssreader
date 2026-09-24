@@ -28,7 +28,7 @@
 	<key>WKApplication</key>
 	<true/>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.yourcompany.NewsRSSReader</string>
+	<string>net.idscan.lentareader.NewsRSSReader</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<true/>
 	<key>WKWatchOnly</key>
